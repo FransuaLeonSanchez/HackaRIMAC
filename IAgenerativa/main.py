@@ -26,10 +26,10 @@ def generate_alert():
     titulo_prompt = f"Genera un título para una alerta de tipo {alerta['tipo'] }"
     titulo_response = model.generate_content(titulo_prompt)
 
-    texto_informativo_prompt = f"Generame un parrafo informativo sin titiulo para una alerta de {alerta['tipo']}  en {alerta['direccion_limpia']} el {alerta['fecha_y_hora']}"
+    texto_informativo_prompt = f"Generame un parrafo informativo sin titiulo para una alerta de {alerta['tipo']}  en {alerta['direccion_limpia']}"
     texto_informativo_response = model.generate_content(texto_informativo_prompt)
 
-    return jsonify({"titulo_alerta": titulo_response.text, "texto_informativo": texto_informativo_response.text})
+    return jsonify({"titulo_alerta": titulo_response.text, "descripcion": texto_informativo_response.text,"fecha_hora": alerta['fecha_y_hora'],"lugar": alerta['direccion_limpia']})
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=2015, debug=False)
