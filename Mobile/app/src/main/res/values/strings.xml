@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Rimac</string>
+    <string name="welcome_message">¡Qué gusto tenerte en la App RIMAC!</string>
+    <string name="activate_gps">Activar GPS</string>
+    <string name="random_location">Ubicación aleatoria: %1$f, %2$f</string>
+    <string name="deactivate_gps">Desactivar GPS</string>
+    <string name="gps_disabled">GPS desactivado</string>
+</resources>
