@@ -23,7 +23,7 @@ model = genai.GenerativeModel('gemini-pro',generation_config=generation_config)
 def generate_alert():
     alerta = request.get_json()
 
-    titulo_prompt = f"Genera un título para una alerta de tipo {alerta['tipo']}"
+    titulo_prompt = f"Genera un título para una alerta de tipo {alerta['tipo'] }"
     titulo_response = model.generate_content(titulo_prompt)
 
     texto_informativo_prompt = f"Generame un parrafo informativo sin titiulo para una alerta de {alerta['tipo']}  en {alerta['direccion_limpia']} el {alerta['fecha_y_hora']}"
