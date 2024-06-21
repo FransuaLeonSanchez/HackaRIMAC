@@ -1,14 +1,13 @@
 from flask import Flask, request, jsonify
 import os
 import google.generativeai as genai
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
 
-
-GOOGLE_API_KEY = "AIzaSyBHrA3-wzZygn4s1ewl2Sj73WXb-Re0vag"  # add your GOOGLE API key here
-os.environ["GOOGLE_API_KEY"] = GOOGLE_API_KEY
-
-genai.configure(api_key=GOOGLE_API_KEY)
+genai.configure(api_key= os.getenv("GEMINI_API"))
 
 generation_config = {
     "temperature": 0.8,
@@ -29,7 +28,7 @@ def generate_alert():
     texto_informativo_prompt = f"Generame un parrafo informativo sin titiulo para una alerta de {alerta['tipo']}  en {alerta['direccion_limpia']}"
     texto_informativo_response = model.generate_content(texto_informativo_prompt)
 
-    return jsonify({"titulo_alerta": titulo_response.text, "descripcion": texto_informativo_response.text,"fecha_hora": alerta['fecha_y_hora'],"lugar": alerta['direccion_limpia']})
+    return jsonify({"titulo": titulo_response.text, "lugar": alerta['direccion_limpia'], "fecha_hora": alerta['fecha_y_hora'], "descripcion": texto_informativo_response.text})
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=2015, debug=False)

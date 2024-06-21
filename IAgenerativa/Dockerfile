@@ -4,10 +4,10 @@ RUN mkdir -p /opt/app
 WORKDIR /opt/app
 
 ADD requirements.txt /opt/app
+ADD main.py /opt/app
+ADD .env /opt/app
 
 RUN pip install -r requirements.txt
-
-ADD . /opt/app
 
 EXPOSE 2015
 
