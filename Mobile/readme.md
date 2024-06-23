@@ -1,3 +1,0 @@
-# Tecnologías
-- Python
-- Kotlin
